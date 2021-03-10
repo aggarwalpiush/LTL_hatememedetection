@@ -12,6 +12,7 @@ import os
 from sister.tokenizers import SimpleTokenizer
 from sister.word_embedders import FasttextEmbedding
 import easyocr
+import sys
 
 word_embedder = FasttextEmbedding("en")
 tokenizer = SimpleTokenizer()
@@ -66,6 +67,7 @@ def train_model():
     if not os.path.exists(file_path):
         clf.fit(X_train, Y_train, validation_data=(X_val, Y_val), epochs=10, batch_size=32)
     clf.load_weights(file_path)
+    return clf
 
 
 def predict_meme_class(clf, meme_path):
@@ -79,4 +81,15 @@ def predict_meme_class(clf, meme_path):
     predict_label = clf.predict(x_text)
 
     return predict_label
+
+
+def main():
+    image_path = sys.argv[1]
+    clf = train_model()
+    print(predict_meme_class(image_path, clf)
+
+if __name__ == '__main__':
+    main()
+
+
 
