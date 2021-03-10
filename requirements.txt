@@ -1,0 +1,7 @@
+json-rpc==1.13.0
+Werkzeug==0.16.0
+wget==3.2
+requests==2.22.0
+nltk==3.5
+flask>=0.12.3
+gunicorn==19.9.0
